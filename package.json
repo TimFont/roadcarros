@@ -1,0 +1,30 @@
+{
+  "name": "roadtemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimFont/roadtemplate.git"
+  },
+  "author": "italo fontes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimFont/roadtemplate/issues"
+  },
+  "homepage": "https://github.com/TimFont/roadtemplate#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-if": "^2.0.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-useref": "^3.1.5"
+  }
+}
