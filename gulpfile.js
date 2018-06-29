@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 var concat = require('gulp-concat');
 var browserSync = require('browser-sync').create();
 
@@ -37,9 +38,11 @@ gulp.task('buildjs', function(){
 });
 
 gulp.task('images', function(){
-    gulp.src('src/img/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('docs/img'))
+    gulp.src('./src/img/**/*.+(png|jpg|jpg|jpeg|gif|svg)')
+        .pipe(cache(imagemin({
+            interlaced:true
+        })))
+        .pipe(gulp.dest('./docs/img'))
         .pipe(browserSync.stream())
 });
 
@@ -52,4 +55,5 @@ gulp.task('server', function(){
     gulp.watch(stylesFolder,['sass']);
     gulp.watch(pagesFolder,['html'] );
     gulp.watch(scriptsFolder, ['buildjs']);
+    gulp.watch('./src/img/**/*.+(png|jpg|jpg|jpeg|gif|svg)', ['images']);
 });
