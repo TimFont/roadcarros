@@ -1,0 +1,13 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size:1.6rem;
+    color:$color-gray-2;
+}
+a {
+    text-decoration: none;
+    color:$color-main;
+
+    &:hover {
+        color:darken($color-main, 10%);
+    }
+}

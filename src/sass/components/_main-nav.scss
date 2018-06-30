@@ -1,0 +1,108 @@
+.main-nav{
+    background-color:$color-white;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    -webkit-box-shadow: 0px 10px 69px -2px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 10px 69px -2px rgba(0,0,0,0.27);
+    box-shadow: 0px 10px 69px -2px rgba(0,0,0,0.27);
+    padding:2.5rem 0 2.5rem 0;
+    transition:all .3s;
+
+    &__container{
+        width:80%;
+        margin:0 auto;
+
+        @include clearfix;
+    }
+
+    &__brand-container {
+        float:left;
+    }
+    &__brand {
+        height:5.5rem;
+    }
+
+    &__stores-container {
+        float:left;
+        font-size:1.7rem;
+        color:darken($color-gray-1, 5%);
+        font-weight: 400;
+        margin-left:3rem;
+        padding-top:.7rem;
+        
+    }
+    &__icon{
+        margin-right:.8rem;
+
+        &--1 {
+            color:$color-main;
+        }
+
+        &--2 {
+            color:green;
+            font-size: 1.7rem;
+        }
+    }
+    &__subsidiaries {
+        margin-bottom:.9rem;
+    }
+
+    &__phone{
+        font-size:1.5rem;
+    }
+
+    &__nav {
+        float:right;
+        padding:1.7rem 0 1.7rem 0;
+    }
+
+    &__item {
+        display:inline-block;
+
+        &:not(:first-of-type) {
+            margin-left:3rem;
+        }   
+        
+    }
+
+    &__link{
+        font-size:1.4rem;
+        letter-spacing:.3rem ;
+        text-transform: uppercase;
+        color:$color-gray-2;
+        
+        &::after{
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: $color-main;
+            margin-top:.5rem;
+            transition: width .3s;
+        }
+
+        &:hover{
+            color:$color-main;
+
+            &::after{
+                width: 100%;
+            }
+        }
+                    
+    }
+
+    &--scrolled {
+        padding:1rem 0 1rem 0;
+    }
+}
+
+
+
+.test{
+    height:200vh;
+    background-color:$color-gray-3;
+    width:100%;
+}
+
