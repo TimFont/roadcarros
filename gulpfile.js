@@ -38,7 +38,7 @@ gulp.task('buildjs', function(){
 });
 
 gulp.task('images', function(){
-    gulp.src('./src/img/**/*.+(png|jpg|jpg|jpeg|gif|svg)')
+    gulp.src('./src/img/*')
         .pipe(cache(imagemin({
             interlaced:true
         })))

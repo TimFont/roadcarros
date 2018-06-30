@@ -1,1 +1,1 @@
-var navBar=document.querySelector(".main-nav");window.addEventListener("scroll",function(){console.log(pageYOffset),150<pageYOffset?navBar.classList.add("main-nav--scrolled"):navBar.classList.remove("main-nav--scrolled")});
+var navBar=document.querySelector(".main-nav");window.addEventListener("scroll",function(){console.log(pageYOffset),200<pageYOffset?navBar.classList.add("main-nav--scrolled"):navBar.classList.remove("main-nav--scrolled")});
