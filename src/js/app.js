@@ -5,6 +5,7 @@ const elements = {
 };
 
 
+
 window.addEventListener('scroll', () =>{
     const navigationClasses = elements.navBar.classList;
     pageYOffset > 200 ?
@@ -12,16 +13,62 @@ window.addEventListener('scroll', () =>{
         navigationClasses.remove('main-nav--scrolled');
 });
 
-/*========SLDER======*/
-let bannerStatus = 1;
-let bannerTimer = 8000;
+
+
 
 window.onload = function(){
-    bannerLoop();
+    slider.slideLoop();
+    setInterval(function(){
+        slider.slideLoop();
+    }, slider.slideTimer);
 }
-const startBannerLoop = setInterval(function(){
-    bannerLoop();
-}, bannerTimer);
+
+/*========SLDER======*/
+
+
+const slider = {
+    element: elements.slider,
+    sliders: elements.slider.querySelectorAll('.home-slider__slide'),
+    slideIndex: 1,
+    slideTimer: 8000,
+
+    setSlidePos (index, position, z){
+        this.sliders[index -1].style.right = `${position}%`;
+        this.sliders[index -1].style.zIndex = `${z}`;
+    },
+
+    slideLoop (){
+        const slidersLength = this.sliders.length;
+        let nextIndex =  this.slideIndex === slidersLength ?
+            1 : this.slideIndex + 1;
+
+        let nextItem = this.sliders[nextIndex - 1];
+        nextItem.style.opacity = '0';
+
+        setTimeout(() => {
+            for(let count = 1; count <= slidersLength; count++){
+
+                if(count === this.slideIndex){
+                    this.setSlidePos(count, 0, -2);
+
+                }
+                else if (count === nextIndex) {
+                    this.setSlidePos(count, -100, -1);
+                }
+                else {
+                    this.setSlidePos(count, 100, -3);
+                }
+            }
+            this.slideIndex = nextIndex;
+
+        }, 500);
+
+        setTimeout(() => {
+            nextItem.style.opacity = '1';
+        }, 1000);
+
+    }
+};
 
 /*if(screen.width < 700) {
     elements.slider.innerHTML='<div class="home-slider__slide home-slider__slide--1">a</div>';   
@@ -32,56 +79,3 @@ const startBannerLoop = setInterval(function(){
     }
 }*/
 
-function bannerLoop(){
-    function rightAndZ(elementNumber,right, z){
-            document.querySelector(`.home-slider__slide--${elementNumber}`).style.right = `${right}%`;
-            document.querySelector(`.home-slider__slide--${elementNumber}`).style.zIndex = `${z}`;
-    }
-
-    if (bannerStatus === 1) {
-        document.querySelector(`.home-slider__slide--2`).style.opacity = '0';
-
-        setTimeout(() => {
-            rightAndZ(1, 0, -2);
-            rightAndZ(2, -100, -1);
-            rightAndZ(3, 100, -3);
-        }, 500);
-
-        setTimeout(() => {
-            document.querySelector(`.home-slider__slide--2`).style.opacity = '1';
-        }, 1000);
-
-        bannerStatus = 2;
-    }
-    else if (bannerStatus === 2) {
-        document.querySelector(`.home-slider__slide--3`).style.opacity = '0';
-
-        setTimeout(() => {
-            rightAndZ(1, 100, -3);
-            rightAndZ(2, 0, -2);
-            rightAndZ(3, -100, -1);
-        }, 500);
-
-        setTimeout(() => {
-            document.querySelector(`.home-slider__slide--3`).style.opacity = '1';
-        }, 1000);
-
-        bannerStatus = 3;
-    }
-
-    else if (bannerStatus === 3) {
-        document.querySelector(`.home-slider__slide--1`).style.opacity = '0';
-
-        setTimeout(() => {
-            rightAndZ(1, -100, -1);
-            rightAndZ(2, 100, -3);
-            rightAndZ(3, 0, -2);
-        }, 500);
-
-        setTimeout(() => {
-            document.querySelector(`.home-slider__slide--1`).style.opacity = '1';
-        }, 1000);
-
-        bannerStatus = 1;
-    }
-}
