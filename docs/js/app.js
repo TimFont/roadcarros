@@ -1,0 +1,1 @@
+"use strict";var elements={navBar:document.querySelector(".main-nav"),slider:document.querySelector(".home-slider")},slider=new slider(element.slider,5e3);function init(){slider.start()}window.onload=init,window.addEventListener("scroll",function(){var e=elements.navBar.classList;200<pageYOffset?e.add("main-nav--scrolled"):e.remove("main-nav--scrolled")});

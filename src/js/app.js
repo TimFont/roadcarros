@@ -1,8 +1,17 @@
-var navBar = document.querySelector('.main-nav');
 
-window.addEventListener('scroll', function(){
-    console.log(pageYOffset);
-    if(pageYOffset > 200){
-        navBar.classList.add('main-nav--scrolled');
-    }else navBar.classList.remove('main-nav--scrolled');
+const elements = {
+    navBar: document.querySelector('.main-nav'),
+    slider: document.querySelector('.home-slider')
+};
+
+
+
+
+
+window.addEventListener('scroll', () =>{
+    const navigationClasses = elements.navBar.classList;
+    pageYOffset > 200 ?
+        navigationClasses.add('main-nav--scrolled') :
+        navigationClasses.remove('main-nav--scrolled');
 });
+
