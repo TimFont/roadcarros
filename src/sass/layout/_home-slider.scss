@@ -3,9 +3,6 @@
     height:100%;
     background-size:cover;
     background-position: bottom; 
-    -webkit-box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
-    -moz-box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
-    box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
     position: relative;
     overflow-x: hidden;
     
@@ -15,9 +12,12 @@
         width:100%;
         height:100%;
         //animation:slide 12s infinite;
-        right:0;
+        //right:0;
         background-size:cover;
         background-position: bottom;
+        -webkit-box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
+        -moz-box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
+        box-shadow: inset 0px 0px 121px 26px rgba(0,0,0,0.39);
         -webkit-transition:all ease-in-out 500ms;
         -moz-transition:all ease-in-out 500ms;
         -o-transition:all ease-in-out 500ms;
@@ -25,15 +25,21 @@
 
         &--1{
             background-image:url('../img/slide1.jpg');
+            right:0;
+
             //animation-delay: -1s;
         }
 
         &--2{
             background-image:url('../img/slide2.jpg');
+            right:100%;
+            opacity:0;
             //animation-delay: 2s;
         }
         &--3{
             background-image:url('../img/slide3.jpg');
+            right:-100%;
+            opacity:0;
             //animation-delay: 5s;
         }
     }

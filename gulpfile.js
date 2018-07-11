@@ -5,6 +5,7 @@ const minify = require('gulp-minify');
 const babel = require('gulp-babel');
 const cssnano = require('gulp-cssnano');
 const imagemin = require('gulp-imagemin');
+const imageminjpeg = require('imagemin-mozjpeg');
 const cache = require('gulp-cache');
 const browserSync = require('browser-sync').create();
 
@@ -49,9 +50,13 @@ gulp.task('buildjs', () =>{
 
 gulp.task('images', () => {
     gulp.src(paths.images)
-        .pipe(imagemin())
+        .pipe(imagemin([
+            imageminjpeg({
+                quality: 50
+            })
+        ]))
         .pipe(gulp.dest(paths.outputImages))
-        .pipe(browserSync.stream())
+        
 });
 
 gulp.task('server', () => {

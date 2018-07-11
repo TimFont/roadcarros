@@ -6,21 +6,18 @@ const elements = {
 
 
 
-window.addEventListener('scroll', () =>{
+window.onscroll = function(){
     const navigationClasses = elements.navBar.classList;
     pageYOffset > 200 ?
         navigationClasses.add('main-nav--scrolled') :
         navigationClasses.remove('main-nav--scrolled');
-});
+};
 
 
 
 
 window.onload = function(){
-    slider.slideLoop();
-    setInterval(function(){
-        slider.slideLoop();
-    }, slider.slideTimer);
+    slider.startSlider();
 }
 
 /*========SLDER======*/
@@ -30,7 +27,13 @@ const slider = {
     element: elements.slider,
     sliders: elements.slider.querySelectorAll('.home-slider__slide'),
     slideIndex: 1,
-    slideTimer: 8000,
+    slideTimer: 7000,
+
+    startSlider(){
+        setInterval(() =>{
+            this.slideLoop();
+        }, slider.slideTimer);
+    },
 
     setSlidePos (index, position, z){
         this.sliders[index -1].style.right = `${position}%`;
@@ -69,6 +72,7 @@ const slider = {
 
     }
 };
+
 
 /*if(screen.width < 700) {
     elements.slider.innerHTML='<div class="home-slider__slide home-slider__slide--1">a</div>';   
