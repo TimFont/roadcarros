@@ -1,12 +1,53 @@
+const elements = require('./helpers/elements');
+const Slider = require('./components/Slider');
 
-const elements = {
-    navBar: document.querySelector('.main-nav'),
-    slider: document.querySelector('.home-slider')
+console.log(elements.slides);
+
+
+
+window.onload = () => {
+     //roda slide
+    if(screen.width > 500){
+        const mainSlider = new Slider(7000);
+        mainSlider.start();
+
+
+
+    }
+
+
+
+    //não roda
+    else if (screen.width < 500) {
+        for(let i = 1; i <= 3; i++){
+            elements.slider.innerHTML +=  `<div class="home-slider__slide home-slider__slide--1">a</div>`;
+        }
+   
+    }
+
+
 };
 
 
 
-window.onscroll = function(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*window.onscroll = function(){
     const navigationClasses = elements.navBar.classList;
     pageYOffset > 200 ?
         navigationClasses.add('main-nav--scrolled') :
@@ -19,10 +60,10 @@ window.onscroll = function(){
 window.onload = function(){
     slider.startSlider();
 }
-
+*/
 /*========SLDER======*/
 
-
+/*
 const slider = {
     element: elements.slider,
     sliders: elements.slider.querySelectorAll('.home-slider__slide'),
@@ -72,7 +113,7 @@ const slider = {
 
     }
 };
-
+*/
 
 /*if(screen.width < 700) {
     elements.slider.innerHTML='<div class="home-slider__slide home-slider__slide--1">a</div>';   
@@ -82,4 +123,3 @@ const slider = {
         elements.slider.innerHTML += `<div class="home-slider__slide home-slider__slide--${index}">a</div>`;
     }
 }*/
-

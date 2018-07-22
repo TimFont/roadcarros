@@ -1,18 +1,22 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
-const minify = require('gulp-minify');
-const babel = require('gulp-babel');
+const buffer = require('vinyl-buffer');
+const source = require('vinyl-source-stream');
+//const babel = require('gulp-babel');
+const babelify = require('babelify');
 const cssnano = require('gulp-cssnano');
 const imagemin = require('gulp-imagemin');
 const imageminjpeg = require('imagemin-mozjpeg');
 const cache = require('gulp-cache');
 const browserSync = require('browser-sync').create();
+const browserify = require('browserify');
 
 const paths = {
     html:'./src/*.html',
     styles:'./src/sass/**/*.scss',
-    script:'./src/js/app.js',
+    mainScript:'./src/js/app.js',
+    scriptsFolder:'./src/js/**/*.js',
     images:'./src/img/**/*.+(png|jpg|jpg|jpeg|gif|svg)',
     outputRoot:'./docs',
     outputStyles:'./docs/css',
@@ -38,7 +42,7 @@ gulp.task('html', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('buildjs', () =>{
+/*gulp.task('buildjs', () =>{
     return gulp.src(paths.script)
     .pipe(babel({
         presets: ['env']
@@ -46,6 +50,19 @@ gulp.task('buildjs', () =>{
     .pipe(uglify())
     .pipe(gulp.dest(paths.outputScript))
     .pipe(browserSync.stream())
+});*/
+
+gulp.task('buildjs', () => {
+    return browserify({
+        entries: ["./src/js/app.js"]
+    })
+    .transform("babelify", { presets: ['env'] })
+    .bundle()
+    .pipe(source("bundle.js"))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.outputScript))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('images', () => {
@@ -67,6 +84,6 @@ gulp.task('server', () => {
     });
     gulp.watch(paths.styles,['sass']);
     gulp.watch(paths.html,['html'] );
-    gulp.watch(paths.script, ['buildjs']);
+    gulp.watch(paths.scriptsFolder, ['buildjs']);
     gulp.watch(paths.outputImages).on("change", browserSync.reload);
 });

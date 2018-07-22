@@ -11,6 +11,7 @@
     animation:fromRight 1s;
     animation-delay:.8s;
     animation-fill-mode: backwards;
+    z-index:4;
 
     &__title-header {
         font-weight: 100;
