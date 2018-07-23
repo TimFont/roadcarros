@@ -1,15 +1,31 @@
 const elements = require('./helpers/elements');
 const Slider = require('./components/Slider');
 
-console.log(elements.slides);
+
 
 
 
 window.onload = () => {
      //roda slide
     if(screen.width > 500){
-        const mainSlider = new Slider(7000);
-        mainSlider.start();
+
+        const slidesContent = [
+            {text: 'test1, best car ever', img:'./img/slide1.jpg'},
+            {text: 'test2, more velocity', img:'./img/slide2.jpg'},
+            {text: 'test2, more velocity', img:'./img/slide2.jpg'}
+        ];
+        const mainSlider = new Slider(elements.mainHeader, slidesContent);
+            mainSlider.render();
+            mainSlider.start();
+
+   
+
+        /*setTimeout(()=>{
+            //mainSlider.setSlidePos(1, -100, -1);
+            mainSlider.slideLoop();
+           // mainSlider.setSlidePos(1, -100, -1, slides);
+        }, 4000);*/
+
 
 
 

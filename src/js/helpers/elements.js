@@ -6,9 +6,12 @@ function select(itemClass, allOrOne,  parent = document){
 }
 
 const elements = {
-    navBar: select('main-nav'),
-    slider: select('home-slider'),
-    slides: select('home-slider__slide', 'all')
+    navBar: document.querySelector('.main-nav'),
+    mainHeader:document.querySelector('.main-header')
+
 };
+
+
+
 
 module.exports = elements;

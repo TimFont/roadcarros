@@ -1,30 +1,36 @@
-const elements = include('../helpers/elements');
-
 class Slider {
-    constructor(interval){
-        this.sliderElement = elements.slider;
-        this.interval = interval;
-        this.state = 1;
+    constructor(parent, content){
+        this.parent = parent;
+        this.content = content;
     }
 
-    start(){
+
+
+    render(){
+        const slider = document.createElement('div');
+            slider.classList.add('slider');
+
+
+
+        for(let countInd = 1; countInd <= this.content.length; countInd ++){
+            const element = this.content[countInd - 1];
+            let position;
+            if (countInd === 1) position = 'primary';
+            else if (countInd === 2) position = 'next';
+            else position ='beyond';
+
+            slider.innerHTML += `
+                <div class = "slider__slide slider__slide--${position}">
+                    <div class = "slider__image" style = "background-image: url(${element.img})"></div>
+                    <h1 class = "slider__text>${element.text}</h1>
+                </div> 
+            `;
+        }
+        console.log(this.parent);
+        this.parent.insertBefore(slider, this.parent.firstChild);
         
-       this.sliderElement.innerHTML = `
-    <div class="home-slider__slide home-slider__slide--primary">
-       <div class= 'home-slider__image home-slider__image--1'></div>
-       <h1 class="home-slider__text">asdaf</h1>
-   </div>
-   <div class="home-slider__slide home-slider__slide--next">
-       <div class= 'home-slider__image home-slider__image--2'></div>
-       <h1 class="home-slider__text">cvbcaf</h1>
-   </div>
-   <div class="home-slider__slide home-slider__slide--beyond">
-       <div class= 'home-slider__image home-slider__image--3'></div>
-       <h1 class="home-slider__text">adfgdh</h1>
-   </div>
-       `;
-    }
 
+    }
 }
 
 module.exports = Slider;
